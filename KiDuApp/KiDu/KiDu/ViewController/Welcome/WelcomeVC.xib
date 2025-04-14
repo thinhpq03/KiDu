@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeVC" customModule="KiDu" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="welcome" destination="S6a-Id-GRR" id="ih3-He-vOl"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="440" height="956"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="Ellipse 85" translatesAutoresizingMaskIntoConstraints="NO" id="ypw-3D-CyX">
+                    <rect key="frame" x="0.0" y="0.0" width="440" height="669.33333333333337"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xiq-wZ-VMM">
+                    <rect key="frame" x="30" y="733" width="380" height="57.666666666666629"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Every Lesson is a New Adventure. Let's Begin!">
+                            <attributes>
+                                <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <font key="NSFont" size="24" name="Itim-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6a-Id-GRR" customClass="LottieAnimationView" customModule="Lottie">
+                    <rect key="frame" x="95" y="353" width="250" height="250"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="250" id="9PR-Hc-Q3x"/>
+                        <constraint firstAttribute="height" constant="250" id="sp0-7R-Qjb"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="Welcome"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Wj-IJ-0Hl">
+                    <rect key="frame" x="20" y="112" width="400" height="69.666666666666686"/>
+                    <attributedString key="attributedText">
+                        <fragment content="Welcome to KiDu">
+                            <attributes>
+                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <font key="NSFont" size="48" name="CherryBombOne-Regular"/>
+                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="2Wj-IJ-0Hl" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="DH9-Cx-EjG"/>
+                <constraint firstItem="2Wj-IJ-0Hl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="E4L-yH-TXw"/>
+                <constraint firstAttribute="trailing" secondItem="ypw-3D-CyX" secondAttribute="trailing" id="FLS-mC-5Jo"/>
+                <constraint firstAttribute="trailing" secondItem="Xiq-wZ-VMM" secondAttribute="trailing" constant="30" id="GRx-Vj-cMY"/>
+                <constraint firstItem="Xiq-wZ-VMM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Jsv-Qm-xzL"/>
+                <constraint firstItem="S6a-Id-GRR" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="MHB-FY-rkH"/>
+                <constraint firstItem="Xiq-wZ-VMM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="N3o-b4-H48"/>
+                <constraint firstItem="S6a-Id-GRR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Yom-tU-Q4Z"/>
+                <constraint firstItem="ypw-3D-CyX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YsU-FU-nX8"/>
+                <constraint firstItem="ypw-3D-CyX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="awz-tr-TxH"/>
+                <constraint firstItem="ypw-3D-CyX" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.7" id="lFq-Jg-cTV"/>
+                <constraint firstItem="Xiq-wZ-VMM" firstAttribute="top" secondItem="S6a-Id-GRR" secondAttribute="bottom" constant="130" id="tOf-FV-sfc"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="2Wj-IJ-0Hl" secondAttribute="trailing" constant="20" id="vK2-NP-FdG"/>
+            </constraints>
+            <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Ellipse 85" width="440" height="461"/>
+    </resources>
+</document>

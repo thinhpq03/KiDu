@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="JPc-Ll-BqU" customClass="RelaxCell" customModule="KiDu" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="404" height="164"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="404" height="164"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Subtract 8" translatesAutoresizingMaskIntoConstraints="NO" id="ySg-e9-7g4">
+                        <rect key="frame" x="331" y="0.0" width="93" height="56"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Subtract 9" translatesAutoresizingMaskIntoConstraints="NO" id="phf-ho-7cu">
+                        <rect key="frame" x="-10" y="108" width="93" height="56"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Group 3" translatesAutoresizingMaskIntoConstraints="NO" id="m7l-s6-WzW">
+                        <rect key="frame" x="251" y="15" width="103" height="87"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="103" id="QZB-fZ-Z2i"/>
+                            <constraint firstAttribute="height" constant="87" id="cHi-W2-WmG"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relax Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9pk-IE-zaw">
+                        <rect key="frame" x="14.999999999999993" y="15" width="99.333333333333314" height="26"/>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                        <color key="textColor" name="000000"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a break after stressful school hours" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EKl-hb-vGa">
+                        <rect key="frame" x="15" y="47" width="211" height="12.666666666666664"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="9"/>
+                        <color key="textColor" name="000000"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DuO-GG-N9B">
+                        <rect key="frame" x="15" y="114" width="374" height="35"/>
+                        <color key="backgroundColor" name="FFFFFF"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="D2p-w2-GvX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="Let's Relax">
+                            <color key="titleColor" name="F9B465"/>
+                        </state>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="CKb-Z4-VEM"/>
+            <color key="backgroundColor" red="0.94117647058823528" green="0.99215686274509807" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="9pk-IE-zaw" firstAttribute="top" secondItem="JPc-Ll-BqU" secondAttribute="top" constant="15" id="9Sg-La-ohV"/>
+                <constraint firstItem="DuO-GG-N9B" firstAttribute="leading" secondItem="JPc-Ll-BqU" secondAttribute="leading" constant="15" id="Dhf-oB-31o"/>
+                <constraint firstAttribute="trailing" secondItem="ySg-e9-7g4" secondAttribute="trailing" constant="-20" id="E6H-VK-WGI"/>
+                <constraint firstItem="9pk-IE-zaw" firstAttribute="leading" secondItem="JPc-Ll-BqU" secondAttribute="leading" constant="15" id="G2g-xO-j1N"/>
+                <constraint firstItem="EKl-hb-vGa" firstAttribute="leading" secondItem="JPc-Ll-BqU" secondAttribute="leading" constant="15" id="LWo-5t-qgr"/>
+                <constraint firstItem="EKl-hb-vGa" firstAttribute="top" secondItem="9pk-IE-zaw" secondAttribute="bottom" constant="6" id="Ldl-cN-k0H"/>
+                <constraint firstAttribute="bottom" secondItem="phf-ho-7cu" secondAttribute="bottom" id="NJe-Lt-0KK"/>
+                <constraint firstAttribute="bottom" secondItem="DuO-GG-N9B" secondAttribute="bottom" constant="15" id="ONr-iz-aXU"/>
+                <constraint firstItem="m7l-s6-WzW" firstAttribute="leading" secondItem="EKl-hb-vGa" secondAttribute="trailing" constant="25" id="QP1-Gr-HiO"/>
+                <constraint firstItem="ySg-e9-7g4" firstAttribute="top" secondItem="JPc-Ll-BqU" secondAttribute="top" id="Qgc-fk-Rvc"/>
+                <constraint firstItem="m7l-s6-WzW" firstAttribute="top" secondItem="JPc-Ll-BqU" secondAttribute="top" constant="15" id="ayz-Mm-Zu9"/>
+                <constraint firstAttribute="trailing" secondItem="m7l-s6-WzW" secondAttribute="trailing" constant="50" id="jdB-OZ-zIT"/>
+                <constraint firstItem="phf-ho-7cu" firstAttribute="leading" secondItem="JPc-Ll-BqU" secondAttribute="leading" constant="-10" id="p9d-4Q-JXw"/>
+                <constraint firstAttribute="trailing" secondItem="DuO-GG-N9B" secondAttribute="trailing" constant="15" id="yvB-2h-cbf"/>
+            </constraints>
+            <size key="customSize" width="404" height="164"/>
+            <connections>
+                <outlet property="actionBtn" destination="DuO-GG-N9B" id="6mF-bc-XDS"/>
+            </connections>
+            <point key="canvasLocation" x="-47.328244274809158" y="-40.140845070422536"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Group 3" width="94" height="83"/>
+        <image name="Subtract 8" width="93" height="56"/>
+        <image name="Subtract 9" width="93" height="56"/>
+        <namedColor name="000000">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="F9B465">
+            <color red="0.97647058823529409" green="0.70588235294117652" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FFFFFF">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

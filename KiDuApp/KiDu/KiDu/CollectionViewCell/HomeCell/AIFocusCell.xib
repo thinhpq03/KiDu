@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="1NI-a2-LKO" customClass="AIFocusCell" customModule="KiDu" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="404" height="164"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="404" height="164"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Subtract 6" translatesAutoresizingMaskIntoConstraints="NO" id="yAn-d4-dV9">
+                        <rect key="frame" x="348" y="59" width="56" height="93"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Subtract 7" translatesAutoresizingMaskIntoConstraints="NO" id="SMi-fQ-t8L">
+                        <rect key="frame" x="0.0" y="10" width="40" height="92"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Frame 1" translatesAutoresizingMaskIntoConstraints="NO" id="6PT-gl-my5">
+                        <rect key="frame" x="50" y="15" width="103" height="87"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="87" id="1MM-28-Bje"/>
+                            <constraint firstAttribute="width" constant="103" id="RxQ-jg-RR2"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AI Focus Image" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NxS-a5-kW4">
+                        <rect key="frame" x="168" y="14.999999999999998" width="221" height="25.333333333333329"/>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                        <color key="textColor" name="000000"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Npy-xa-K1Y">
+                        <rect key="frame" x="15" y="114" width="374" height="35"/>
+                        <color key="backgroundColor" name="FFFFFF"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="x00-gF-zUj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="Try It!">
+                            <color key="titleColor" name="F9B465"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identify objects from pictures and pronounce them" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Coz-NE-ASW">
+                        <rect key="frame" x="168" y="46.333333333333336" width="221" height="25.333333333333336"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="9"/>
+                        <color key="textColor" name="000000"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="56t-b3-hgb"/>
+            <color key="backgroundColor" red="0.98431372549019602" green="1" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="SMi-fQ-t8L" firstAttribute="leading" secondItem="1NI-a2-LKO" secondAttribute="leading" id="3Vz-j0-XOi"/>
+                <constraint firstItem="Npy-xa-K1Y" firstAttribute="leading" secondItem="1NI-a2-LKO" secondAttribute="leading" constant="15" id="42Z-7k-PVS"/>
+                <constraint firstItem="NxS-a5-kW4" firstAttribute="top" secondItem="1NI-a2-LKO" secondAttribute="top" constant="15" id="5Kw-HR-qKA"/>
+                <constraint firstItem="Coz-NE-ASW" firstAttribute="top" secondItem="NxS-a5-kW4" secondAttribute="bottom" constant="6" id="JYH-AG-nUr"/>
+                <constraint firstAttribute="bottom" secondItem="yAn-d4-dV9" secondAttribute="bottom" constant="12" id="Oal-HF-f6e"/>
+                <constraint firstItem="Coz-NE-ASW" firstAttribute="leading" secondItem="6PT-gl-my5" secondAttribute="trailing" constant="15" id="Sgf-XU-leH"/>
+                <constraint firstAttribute="trailing" secondItem="Coz-NE-ASW" secondAttribute="trailing" constant="15" id="T6A-fb-PcW"/>
+                <constraint firstAttribute="bottom" secondItem="Npy-xa-K1Y" secondAttribute="bottom" constant="15" id="ZL8-ff-S7A"/>
+                <constraint firstItem="6PT-gl-my5" firstAttribute="leading" secondItem="1NI-a2-LKO" secondAttribute="leading" constant="50" id="ePY-9l-szM"/>
+                <constraint firstItem="6PT-gl-my5" firstAttribute="top" secondItem="1NI-a2-LKO" secondAttribute="top" constant="15" id="eli-Tu-RL3"/>
+                <constraint firstAttribute="trailing" secondItem="Npy-xa-K1Y" secondAttribute="trailing" constant="15" id="erT-G6-SYL"/>
+                <constraint firstItem="SMi-fQ-t8L" firstAttribute="top" secondItem="1NI-a2-LKO" secondAttribute="top" constant="10" id="ga6-4K-3M6"/>
+                <constraint firstAttribute="trailing" secondItem="NxS-a5-kW4" secondAttribute="trailing" constant="15" id="gvO-dc-vhz"/>
+                <constraint firstAttribute="trailing" secondItem="yAn-d4-dV9" secondAttribute="trailing" id="hwM-CU-N7o"/>
+                <constraint firstItem="NxS-a5-kW4" firstAttribute="leading" secondItem="6PT-gl-my5" secondAttribute="trailing" constant="15" id="mEC-vS-hpZ"/>
+            </constraints>
+            <size key="customSize" width="404" height="164"/>
+            <connections>
+                <outlet property="actionBtn" destination="Npy-xa-K1Y" id="Xcm-DN-1FF"/>
+            </connections>
+            <point key="canvasLocation" x="-47.328244274809158" y="-40.140845070422536"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Frame 1" width="89" height="86"/>
+        <image name="Subtract 6" width="56" height="93"/>
+        <image name="Subtract 7" width="40" height="92"/>
+        <namedColor name="000000">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="F9B465">
+            <color red="0.97647058823529409" green="0.70588235294117652" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FFFFFF">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

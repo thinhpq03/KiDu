@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="NIB-Eg-LJq" customClass="PomodorosCell" customModule="KiDu" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="404" height="164"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="404" height="164"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Subtract 3" translatesAutoresizingMaskIntoConstraints="NO" id="uuD-U7-Noq">
+                        <rect key="frame" x="281" y="0.0" width="93" height="56"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Subtract 2" translatesAutoresizingMaskIntoConstraints="NO" id="94t-rf-OIy">
+                        <rect key="frame" x="15" y="108" width="93" height="56"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Group 1" translatesAutoresizingMaskIntoConstraints="NO" id="khT-XB-SHg">
+                        <rect key="frame" x="50" y="15" width="103" height="87"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="87" id="2Y6-UL-TvD"/>
+                            <constraint firstAttribute="width" constant="103" id="Acn-5t-0Ck"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pomodoro Technique" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DbG-qg-ZSw">
+                        <rect key="frame" x="168" y="14.999999999999998" width="221" height="25.333333333333329"/>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                        <color key="textColor" name="000000"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oF-RP-6V7">
+                        <rect key="frame" x="15" y="114" width="374" height="35"/>
+                        <color key="backgroundColor" name="FFFFFF"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="35" id="wRj-76-Q37"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="15"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="Challenge!">
+                            <color key="titleColor" name="F9B465"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beat procrastination and improve your focus one pomodoro at a time" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccO-ON-DGh">
+                        <rect key="frame" x="168" y="46.333333333333336" width="221" height="25.333333333333336"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="9"/>
+                        <color key="textColor" name="000000"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="MUU-g2-aoQ"/>
+            <color key="backgroundColor" red="1" green="0.96470588239999999" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="ccO-ON-DGh" firstAttribute="leading" secondItem="khT-XB-SHg" secondAttribute="trailing" constant="15" id="1LR-aW-gq6"/>
+                <constraint firstItem="uuD-U7-Noq" firstAttribute="top" secondItem="NIB-Eg-LJq" secondAttribute="top" id="2wl-55-R5m"/>
+                <constraint firstItem="ccO-ON-DGh" firstAttribute="top" secondItem="DbG-qg-ZSw" secondAttribute="bottom" constant="6" id="7wj-Gk-vBY"/>
+                <constraint firstAttribute="trailing" secondItem="uuD-U7-Noq" secondAttribute="trailing" constant="30" id="9dw-Od-u7C"/>
+                <constraint firstAttribute="bottom" secondItem="94t-rf-OIy" secondAttribute="bottom" id="Ue4-dW-GMv"/>
+                <constraint firstItem="khT-XB-SHg" firstAttribute="leading" secondItem="NIB-Eg-LJq" secondAttribute="leading" constant="50" id="aD8-CB-mpn"/>
+                <constraint firstItem="DbG-qg-ZSw" firstAttribute="top" secondItem="NIB-Eg-LJq" secondAttribute="top" constant="15" id="aVl-LG-KMc"/>
+                <constraint firstItem="5oF-RP-6V7" firstAttribute="leading" secondItem="NIB-Eg-LJq" secondAttribute="leading" constant="15" id="b6T-ew-cm4"/>
+                <constraint firstAttribute="trailing" secondItem="DbG-qg-ZSw" secondAttribute="trailing" constant="15" id="dNL-yk-6qP"/>
+                <constraint firstItem="DbG-qg-ZSw" firstAttribute="leading" secondItem="khT-XB-SHg" secondAttribute="trailing" constant="15" id="fjc-LC-H3X"/>
+                <constraint firstAttribute="trailing" secondItem="5oF-RP-6V7" secondAttribute="trailing" constant="15" id="hwr-38-Cgm"/>
+                <constraint firstAttribute="bottom" secondItem="5oF-RP-6V7" secondAttribute="bottom" constant="15" id="iml-bz-aXH"/>
+                <constraint firstItem="khT-XB-SHg" firstAttribute="top" secondItem="NIB-Eg-LJq" secondAttribute="top" constant="15" id="org-AQ-dg7"/>
+                <constraint firstItem="94t-rf-OIy" firstAttribute="leading" secondItem="NIB-Eg-LJq" secondAttribute="leading" constant="15" id="pbc-ng-SW5"/>
+                <constraint firstAttribute="trailing" secondItem="ccO-ON-DGh" secondAttribute="trailing" constant="15" id="roU-rh-lOY"/>
+            </constraints>
+            <size key="customSize" width="404" height="164"/>
+            <connections>
+                <outlet property="actionBtn" destination="5oF-RP-6V7" id="VcB-99-5P6"/>
+            </connections>
+            <point key="canvasLocation" x="-47.328244274809158" y="-40.140845070422536"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Group 1" width="131" height="108"/>
+        <image name="Subtract 2" width="93" height="56"/>
+        <image name="Subtract 3" width="93" height="56"/>
+        <namedColor name="000000">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="F9B465">
+            <color red="0.97647058823529409" green="0.70588235294117652" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="FFFFFF">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
