@@ -10,6 +10,7 @@ import UIKit
 class ChooseLetterNumberVC: UIViewController {
 
     @IBOutlet var backgroundViews: [UIView]!
+    var onDismiss: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,13 @@ class ChooseLetterNumberVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         backgroundViews.forEach { $0.layer.cornerRadius = 20 }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParent {
+            onDismiss?()
+        }
     }
 
     @IBAction func letter(_ sender: Any) {

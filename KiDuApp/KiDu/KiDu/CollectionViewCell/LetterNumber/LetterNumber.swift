@@ -16,4 +16,9 @@ class LetterNumber: UICollectionViewCell {
         // Initialization code
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = 10
+    }
+
 }

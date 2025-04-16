@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseStorage
+import FirebaseFirestore
 
 class ProfileVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -17,6 +17,8 @@ class ProfileVC: BaseVC, UIImagePickerControllerDelegate, UINavigationController
     @IBOutlet weak var signOutBtn: UIButton!
 
     var selectedAvatarImage: UIImage?
+
+    let db = Firestore.firestore()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,20 +50,28 @@ class ProfileVC: BaseVC, UIImagePickerControllerDelegate, UINavigationController
         if let displayName = user.displayName, !displayName.isEmpty {
             nameTxt.text = displayName
         } else if let email = user.email {
-            let nameFromEmail = email.components(separatedBy: "@").first
-            nameTxt.text = nameFromEmail
+            nameTxt.text = email.components(separatedBy: "@").first
         }
 
-        if let photoURL = user.photoURL {
-            URLSession.shared.dataTask(with: photoURL) { data, response, error in
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.avatar.image = image
+        let docRef = db.collection("users").document(user.uid)
+        docRef.getDocument { document, error in
+            if let error = error {
+                print("Error fetching user document: \(error.localizedDescription)")
+            } else if let document = document, document.exists {
+                let data = document.data() ?? [:]
+                if let avatarBase64 = data["avatar"] as? String, !avatarBase64.isEmpty {
+                    if let imageData = Data(base64Encoded: avatarBase64), let image = UIImage(data: imageData) {
+                        DispatchQueue.main.async {
+                            self.avatar.image = image
+                        }
                     }
                 }
-            }.resume()
-        } else {
-            self.avatar.image = UIImage(named: "placeholder")
+                if let displayName = data["displayName"] as? String {
+                    DispatchQueue.main.async {
+                        self.nameTxt.text = displayName
+                    }
+                }
+            }
         }
     }
 
@@ -71,7 +81,7 @@ class ProfileVC: BaseVC, UIImagePickerControllerDelegate, UINavigationController
             let welcomeVC = WelcomeVC()
             welcomeVC.modalPresentationStyle = .fullScreen
             self.navigationController?.setViewControllers([welcomeVC], animated: true)
-            print("Logout successfuly.")
+            print("Logout successfully.")
         } catch let error {
             print("Logout error: \(error.localizedDescription)")
         }
@@ -85,7 +95,8 @@ class ProfileVC: BaseVC, UIImagePickerControllerDelegate, UINavigationController
     }
 
     // MARK: - UIImagePickerControllerDelegate
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
         if let image = info[.originalImage] as? UIImage {
             selectedAvatarImage = image
@@ -102,43 +113,27 @@ class ProfileVC: BaseVC, UIImagePickerControllerDelegate, UINavigationController
 
         let changeRequest = user.createProfileChangeRequest()
         changeRequest.displayName = nameTxt.text ?? ""
-
-        if let newImage = selectedAvatarImage {
-            guard let imageData = newImage.jpegData(compressionQuality: 0.8) else { return }
-
-            let storageRef = Storage.storage().reference().child("avatars").child("\(user.uid).jpg")
-            storageRef.putData(imageData, metadata: nil) { metadata, error in
-                if let error = error {
-                    print("Error upload image: \(error.localizedDescription)")
-                    return
-                }
-                storageRef.downloadURL { url, error in
-                    if let error = error {
-                        print("Error get download URL: \(error.localizedDescription)")
-                        return
-                    }
-
-                    if let url = url {
-                        changeRequest.photoURL = url
-                        changeRequest.commitChanges { error in
-                            if let error = error {
-                                print("Error update profile: \(error.localizedDescription)")
-                                self.view.showMsg("Error update profile")
-                            } else {
-                                self.view.showMsg("Update profile successfully.")
-                            }
-                        }
-                    }
-                }
+        changeRequest.commitChanges { error in
+            if let error = error {
+                print("Error updating auth profile: \(error.localizedDescription)")
+            } else {
+                print("Auth profile updated successfully.")
             }
-        } else {
-            changeRequest.commitChanges { error in
-                if let error = error {
-                    print("Lỗi khi cập nhật profile: \(error.localizedDescription)")
-                    self.view.showMsg("Error update profile")
-                } else {
-                    self.view.showMsg("Update profile successfully.")
-                }
+        }
+
+        var updateData: [String: Any] = ["displayName": nameTxt.text ?? ""]
+        if let newImage = selectedAvatarImage,
+           let imageData = newImage.jpegData(compressionQuality: 0.8) {
+            let base64String = imageData.base64EncodedString()
+            updateData["avatar"] = base64String
+        }
+
+        db.collection("users").document(user.uid).setData(updateData, merge: true) { error in
+            if let error = error {
+                print("Error updating Firestore profile: \(error.localizedDescription)")
+                self.view.showMsg("Error update profile")
+            } else {
+                self.view.showMsg("Update profile successfully.")
             }
         }
     }

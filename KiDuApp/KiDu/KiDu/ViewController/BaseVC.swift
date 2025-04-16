@@ -12,6 +12,8 @@ public let isIphone: Bool = UIDevice.current.userInterfaceIdiom == .phone
 
 class BaseVC: UIViewController {
 
+    var learnedItems: [String] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         do {

@@ -28,7 +28,7 @@ class CustomTabBarController: UITabBarController {
         let homeVC = HomeVC()
         homeVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home"), tag: 0)
 
-        let statistical = HomeVC()
+        let statistical = StatisticalVC()
         statistical.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "statistical"), tag: 1)
 
         let profile = ProfileVC()

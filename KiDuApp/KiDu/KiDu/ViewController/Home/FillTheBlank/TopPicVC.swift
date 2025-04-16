@@ -18,6 +18,8 @@ class TopPicVC: BaseVC {
     var vocabularyData: [String: [Vocabulary]] = [:]
     var topics: [String] = []
 
+    var onDismiss: (() -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +31,13 @@ class TopPicVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadTopicsFromJSON()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParent {
+            onDismiss?()
+        }
     }
 
     func loadTopicsFromJSON() {

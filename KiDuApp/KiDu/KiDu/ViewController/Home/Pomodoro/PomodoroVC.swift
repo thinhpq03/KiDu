@@ -31,6 +31,8 @@ class PomodoroVC: BaseVC, UIPickerViewDelegate, UIPickerViewDataSource {
     var remainingSeconds: Int = 0
     var audioPlayer: AVAudioPlayer?
 
+    var onDismiss: (() -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -38,6 +40,13 @@ class PomodoroVC: BaseVC, UIPickerViewDelegate, UIPickerViewDataSource {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setUpView()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParent {
+            onDismiss?()
+        }
     }
 
     func setUpView() {

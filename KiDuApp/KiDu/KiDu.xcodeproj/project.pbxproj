@@ -47,6 +47,8 @@
 		856ACE132CE6517B00B525E7 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856ACE112CE6517B00B525E7 /* WelcomeVC.swift */; };
 		856ACE142CE6517B00B525E7 /* WelcomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856ACE122CE6517B00B525E7 /* WelcomeVC.xib */; };
 		856ACE182CE6567500B525E7 /* Itim-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 856ACE172CE6567500B525E7 /* Itim-Regular.ttf */; };
+		8572F3352DAEAB0900591A67 /* StatisticalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8572F3332DAEAB0900591A67 /* StatisticalVC.swift */; };
+		8572F3362DAEAB0900591A67 /* StatisticalVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8572F3342DAEAB0900591A67 /* StatisticalVC.xib */; };
 		85786DC62D9D3BE900599887 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85786DC42D9D3BE900599887 /* ImageCell.swift */; };
 		85786DC72D9D3BE900599887 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85786DC52D9D3BE900599887 /* ImageCell.xib */; };
 		85786DCA2D9D3CC900599887 /* AddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85786DC82D9D3CC800599887 /* AddCell.swift */; };
@@ -150,6 +152,8 @@
 		856ACE112CE6517B00B525E7 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		856ACE122CE6517B00B525E7 /* WelcomeVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeVC.xib; sourceTree = "<group>"; };
 		856ACE172CE6567500B525E7 /* Itim-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Itim-Regular.ttf"; sourceTree = "<group>"; };
+		8572F3332DAEAB0900591A67 /* StatisticalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticalVC.swift; sourceTree = "<group>"; };
+		8572F3342DAEAB0900591A67 /* StatisticalVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticalVC.xib; sourceTree = "<group>"; };
 		85786DC42D9D3BE900599887 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		85786DC52D9D3BE900599887 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		85786DC82D9D3CC800599887 /* AddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCell.swift; sourceTree = "<group>"; };
@@ -376,6 +380,7 @@
 				851C85892D9055490055B4B0 /* LogIn */,
 				85A3C65A2D925092007BB8A1 /* Home */,
 				852C0AA12DAD54B600EFCD50 /* Profile */,
+				8572F3322DAEA49900591A67 /* Statistical */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -399,6 +404,15 @@
 				85A3C6662D925C8C007BB8A1 /* Poppins-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		8572F3322DAEA49900591A67 /* Statistical */ = {
+			isa = PBXGroup;
+			children = (
+				8572F3332DAEAB0900591A67 /* StatisticalVC.swift */,
+				8572F3342DAEAB0900591A67 /* StatisticalVC.xib */,
+			);
+			path = Statistical;
 			sourceTree = "<group>";
 		};
 		85786DBF2D9D3B9B00599887 /* ImageCell */ = {
@@ -691,6 +705,7 @@
 				854115182D9E32F600CD1309 /* SelectGameVC.xib in Resources */,
 				85FA65D52D95A99400FDF4F3 /* Word.json in Resources */,
 				854361102D945EBB0081D786 /* PraticeVC.xib in Resources */,
+				8572F3362DAEAB0900591A67 /* StatisticalVC.xib in Resources */,
 				8510FD3F2D92FF6600A7BEB7 /* AIFocusCell.xib in Resources */,
 				85786DCB2D9D3CC900599887 /* AddCell.xib in Resources */,
 				856ACE0E2CE64EF700B525E7 /* Main.storyboard in Resources */,
@@ -818,6 +833,7 @@
 				85A0887F2D9EC0F200CD4399 /* TopPicCell.swift in Sources */,
 				85A3C65E2D9250CC007BB8A1 /* HomeVC.swift in Sources */,
 				85FA66302D96D21200FDF4F3 /* PixelCanvasView.swift in Sources */,
+				8572F3352DAEAB0900591A67 /* StatisticalVC.swift in Sources */,
 				854115092D9E2F5C00CD1309 /* PuzzleVC.swift in Sources */,
 				85A3C66F2D92889F007BB8A1 /* FillBlankCell.swift in Sources */,
 				856ACE132CE6517B00B525E7 /* WelcomeVC.swift in Sources */,

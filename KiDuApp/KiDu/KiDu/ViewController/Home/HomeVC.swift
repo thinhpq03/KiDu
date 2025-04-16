@@ -8,6 +8,7 @@
 import UIKit
 import Lottie
 import FirebaseAuth
+import FirebaseFirestore
 
 class HomeVC: BaseVC {
 
@@ -24,13 +25,19 @@ class HomeVC: BaseVC {
     ]
 
     @IBOutlet weak var arlertView: UIView!
+    @IBOutlet weak var progressLb: UILabel!
     @IBOutlet weak var statisticalView: RoundStatisticalView!
     @IBOutlet weak var beeAnimation: LottieAnimationView!
     @IBOutlet weak var continueBtn: UIButton!
     @IBOutlet weak var homeCLV: UICollectionView!
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var nameLB: UILabel!
-    
+
+    let db = Firestore.firestore()
+
+    var selectedCellStartTime: Date?
+    var selectedCellName: String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,6 +47,7 @@ class HomeVC: BaseVC {
         setupContinueView()
         setupCLV()
         loadUserProfile()
+        loadLearningProgress()
     }
 
     func setupContinueView() {
@@ -49,7 +57,6 @@ class HomeVC: BaseVC {
         arlertView.layer.shadowOffset = .zero
         arlertView.layer.shadowRadius = 8
 
-        statisticalView.progress = 0.75
         beeAnimation.animationSpeed = 1
         beeAnimation.loopMode = .loop
         beeAnimation.play()
@@ -70,27 +77,91 @@ class HomeVC: BaseVC {
 
     func loadUserProfile() {
         guard let user = Auth.auth().currentUser else { return }
-
+        avatar.layer.cornerRadius = avatar.frame.width / 2
         if let displayName = user.displayName, !displayName.isEmpty {
             nameLB.text = displayName
         } else if let email = user.email {
-            let nameFromEmail = email.components(separatedBy: "@").first
-            nameLB.text = nameFromEmail
+            nameLB.text = email.components(separatedBy: "@").first
         }
 
-        if let photoURL = user.photoURL {
-            URLSession.shared.dataTask(with: photoURL) { data, response, error in
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.avatar.image = image
+        let docRef = db.collection("users").document(user.uid)
+        docRef.getDocument { document, error in
+            if let error = error {
+                print("Error fetching user document: \(error.localizedDescription)")
+            } else if let document = document, document.exists {
+                let data = document.data() ?? [:]
+                if let avatarBase64 = data["avatar"] as? String, !avatarBase64.isEmpty {
+                    if let imageData = Data(base64Encoded: avatarBase64), let image = UIImage(data: imageData) {
+                        DispatchQueue.main.async {
+                            self.avatar.image = image
+                        }
                     }
                 }
-            }.resume()
-        } else {
-            self.avatar.image = UIImage(named: "placeholder")
+                if let displayName = data["displayName"] as? String {
+                    DispatchQueue.main.async {
+                        self.nameLB.text = displayName
+                    }
+                }
+            }
         }
     }
 
+    func loadLearningProgress() {
+        guard let user = Auth.auth().currentUser else { return }
+        let docRef = db.collection("users").document(user.uid)
+        docRef.getDocument { (document, error) in
+            if let error = error {
+                print("Error loading learning progress: \(error.localizedDescription)")
+            } else if let document = document, document.exists {
+                let data = document.data() ?? [:]
+                self.learnedItems = data["learnedItems"] as? [String] ?? []
+                self.updateProgressPercentage()
+            }
+        }
+    }
+
+    func updateProgressPercentage() {
+        let totalCount = 40
+        let progressPercent = (Double(self.learnedItems.count) / Double(totalCount)) * 100
+        progressLb.text = "\(Int(progressPercent))%"
+        statisticalView.progress = progressPercent / 100
+    }
+
+    func saveStudyTime() {
+        guard let startTime = selectedCellStartTime,
+              let cellName = selectedCellName,
+              let user = Auth.auth().currentUser else { return }
+
+        let endTime = Date()
+        let elapsedTime = endTime.timeIntervalSince(startTime)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todayDate = dateFormatter.string(from: Date())
+
+        let studyLogRef = db.collection("users")
+            .document(user.uid)
+            .collection("studyLogs")
+            .document(todayDate)
+
+        studyLogRef.setData([
+            "activities.\(cellName)": FieldValue.increment(elapsedTime)
+        ], merge: true) { error in
+            if let error = error {
+                print("Error saving study time: \(error.localizedDescription)")
+            } else {
+                print("Study time for \(cellName) saved successfully.")
+            }
+        }
+        selectedCellStartTime = nil
+        selectedCellName = nil
+    }
+
+    @IBAction func continueClick(_ sender: Any) {
+        let chooseVC = ChooseLetterNumberVC()
+        chooseVC.onDismiss = saveStudyTime
+        navigationController?.pushViewController(chooseVC, animated: true)
+    }
+    
 }
 
 extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -122,28 +193,36 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
         let layout = layouts[indexPath.row]
+        selectedCellStartTime = Date()
+        selectedCellName = layout
+
         switch layout {
             case LetterNumberCell.cellId:
                 let chooseVC = ChooseLetterNumberVC()
+                chooseVC.onDismiss = saveStudyTime
                 navigationController?.pushViewController(chooseVC, animated: true)
             case PomodorosCell.cellId:
                 let pomodoroVC = PomodoroVC()
+                pomodoroVC.onDismiss = saveStudyTime
                 navigationController?.pushViewController(pomodoroVC, animated: true)
             case FillBlankCell.cellId:
                 let vc = TopPicVC()
+                vc.onDismiss = saveStudyTime
                 self.navigationController?.pushViewController(vc, animated: true)
             case AIFocusCell.cellId:
                 let camereVC = CameraVC()
+                camereVC.onDismiss = saveStudyTime
                 navigationController?.pushViewController(camereVC, animated: true)
             case RelaxCell.cellId:
                 let vc = SelectGameVC()
+                vc.onDismiss = saveStudyTime
                 navigationController?.pushViewController(vc, animated: true)
             default:
                 return
         }
     }
+
 }
 
 extension HomeVC: UICollectionViewDelegateFlowLayout {

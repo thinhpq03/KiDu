@@ -30,14 +30,12 @@ class RoundStatisticalView: UIView {
     }
 
     private func setupLayers() {
-        // Setup background layer
         backgroundLayer.lineWidth = 8
         backgroundLayer.fillColor = UIColor.clear.cgColor
         backgroundLayer.strokeColor = UIColor.init(hex: "D0EFFF", alpha: 1).cgColor
         backgroundLayer.lineCap = .round
         layer.addSublayer(backgroundLayer)
 
-        // Setup foreground layer
         foregroundLayer.lineWidth = 8
         foregroundLayer.fillColor = UIColor.clear.cgColor
         foregroundLayer.strokeColor = UIColor.init(hex: "F9A545").cgColor
@@ -57,11 +55,9 @@ class RoundStatisticalView: UIView {
         let startAngle = CGFloat(-1 * Double.pi / 2)
         let endAngle = CGFloat(3 * Double.pi / 2)
 
-        // Background path
         let backgroundPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         backgroundLayer.path = backgroundPath.cgPath
 
-        // Foreground path
         let foregroundEndAngle = startAngle - progress * (2 * CGFloat.pi)
         let foregroundPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: startAngle, endAngle: foregroundEndAngle, clockwise: false)
         foregroundLayer.path = foregroundPath.cgPath

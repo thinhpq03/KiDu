@@ -14,6 +14,8 @@ enum GameType {
 class SelectGameVC: UIViewController {
 
     @IBOutlet var views: [UIView]!
+    
+    var onDismiss: (() -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,13 @@ class SelectGameVC: UIViewController {
             $0.layer.borderColor = UIColor(hex: "F9A545").cgColor
             $0.layer.borderWidth = 1
             $0.clipsToBounds = true
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParent {
+            onDismiss?()
         }
     }
 

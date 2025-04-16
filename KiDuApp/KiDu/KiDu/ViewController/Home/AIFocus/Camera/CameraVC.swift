@@ -27,6 +27,8 @@ class CameraVC: BaseVC {
     private let sessionQueue = DispatchQueue(label: "Capture Session")
     private var isUsingFrontCamera = false
 
+    var onDismiss: (() -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -39,6 +41,13 @@ class CameraVC: BaseVC {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupView()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParent {
+            onDismiss?()
+        }
     }
 
     func setupView() {
