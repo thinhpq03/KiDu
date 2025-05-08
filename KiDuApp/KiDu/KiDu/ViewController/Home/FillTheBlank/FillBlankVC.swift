@@ -5,6 +5,7 @@
 //  Created by Phạm Quý Thịnh on 3/4/25.
 //
 
+// Cải tiến lại: thêm vào phonetic để user dễ biết các từ khó, update giao diện đẹp hơn
 
 import UIKit
 
@@ -61,6 +62,8 @@ class FillBlankVC: UIViewController, UITextFieldDelegate {
                 textField.placeholder = "_"
                 textField.delegate = self
                 textField.textColor = .black
+                textField.autocorrectionType = .no
+                textField.autocapitalizationType = .none
                 puzzleStackView.addArrangedSubview(textField)
                 missingTextFields.append(textField)
             } else {
