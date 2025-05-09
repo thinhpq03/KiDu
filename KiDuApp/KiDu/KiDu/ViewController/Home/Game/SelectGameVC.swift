@@ -5,6 +5,8 @@
 //  Created by Phạm Quý Thịnh on 3/4/25.
 //
 
+//Thêm màn chúc mừng khi xong game. Xem lại logic Image (fill, scale)
+
 import UIKit
 
 enum GameType {

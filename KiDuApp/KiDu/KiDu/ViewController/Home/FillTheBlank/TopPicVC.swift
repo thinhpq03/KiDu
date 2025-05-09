@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseFirestore
 
 class TopPicVC: BaseVC {
 
@@ -30,7 +31,7 @@ class TopPicVC: BaseVC {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        loadTopicsFromJSON()
+        loadTopicsFromFirebase()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -40,19 +41,43 @@ class TopPicVC: BaseVC {
         }
     }
 
-    func loadTopicsFromJSON() {
-        guard let fileUrl = Bundle.main.url(forResource: "Word", withExtension: "json") else {
-            print("Không tìm thấy file JSON")
-            return
-        }
+    func loadTopicsFromFirebase() {
+        let db = Firestore.firestore()
+        // Lấy danh sách danh mục (categories) từ Firestore
+        db.collection("vocabulary").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting categories: \(error)")
+                return
+            }
 
-        do {
-            let data = try Data(contentsOf: fileUrl)
-            vocabularyData = try JSONDecoder().decode([String: [Vocabulary]].self, from: data)
-            topics = Array(vocabularyData.keys).sorted()
-            topPicCLV.reloadData()
-        } catch {
-            print("Lỗi load JSON: \(error)")
+            guard let documents = querySnapshot?.documents else {
+                print("No categories found")
+                return
+            }
+
+            self.topics = documents.map { $0.documentID }.sorted()
+            self.vocabularyData = [:] // Reset dữ liệu trước khi load
+
+            // Lấy từ vựng cho từng danh mục
+            for topic in self.topics {
+                db.collection("vocabulary").document(topic).collection("words").getDocuments { (wordSnapshot, wordError) in
+                    if let wordError = wordError {
+                        print("Error getting words for \(topic): \(wordError)")
+                        return
+                    }
+
+                    let words = wordSnapshot?.documents.compactMap { doc -> Vocabulary? in
+                        let data = doc.data()
+                        let word = data["word"] as? String ?? ""
+                        let pronunciation = data["pronunciation"] as? String ?? ""
+                        let meaning = data["meaning"] as? String ?? ""
+                        return Vocabulary(word: word, pronunciation: pronunciation, meaning: meaning)
+                    } ?? []
+
+                    self.vocabularyData[topic] = words
+                    self.topPicCLV.reloadData() // Cập nhật giao diện sau mỗi lần load
+                }
+            }
         }
     }
 

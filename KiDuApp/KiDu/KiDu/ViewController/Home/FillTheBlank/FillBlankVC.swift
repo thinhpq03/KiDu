@@ -5,13 +5,12 @@
 //  Created by Phạm Quý Thịnh on 3/4/25.
 //
 
-// Cải tiến lại: thêm vào phonetic để user dễ biết các từ khó, update giao diện đẹp hơn
-
 import UIKit
+import FirebaseFirestore
 
 class FillBlankVC: UIViewController, UITextFieldDelegate {
 
-    // Danh sách 10 từ vựng
+    // Danh sách từ vựng từ Firebase
     var vocabularies: [Vocabulary] = []
     // Chỉ số từ hiện tại
     var currentIndex: Int = 0
@@ -24,13 +23,37 @@ class FillBlankVC: UIViewController, UITextFieldDelegate {
     var missingTextFields: [UITextField] = []
 
     @IBOutlet weak var puzzleStackView: UIStackView!
+    @IBOutlet weak var pronuncLb: UILabel!
+    @IBOutlet weak var currentLb: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if !vocabularies.isEmpty {
-            setupPuzzle()
-        } else {
-            print("Error: No vocabularies provided.")
+        setupFirebase()
+    }
+
+    // Thiết lập kết nối Firebase và lấy dữ liệu
+    func setupFirebase() {
+        let db = Firestore.firestore()
+        db.collection("vocabulary").document("Animals").collection("words").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+                return
+            }
+            self.vocabularies = querySnapshot?.documents.compactMap { doc -> Vocabulary? in
+                let data = doc.data()
+                let word = data["word"] as? String ?? ""
+                let pronunciation = data["pronunciation"] as? String ?? ""
+                let meaning = data["meaning"] as? String ?? ""
+                return Vocabulary(word: word, pronunciation: pronunciation, meaning: meaning)
+            } ?? []
+
+            // Lấy 10 từ đầu tiên (hoặc ít hơn nếu không đủ)
+            self.vocabularies = Array(self.vocabularies.prefix(10))
+            if !self.vocabularies.isEmpty {
+                self.setupPuzzle()
+            } else {
+                print("Error: No vocabularies found in Firebase.")
+            }
         }
     }
 
@@ -44,6 +67,10 @@ class FillBlankVC: UIViewController, UITextFieldDelegate {
 
         let vocabulary = vocabularies[currentIndex]
         let word = vocabulary.word
+        let pronunciation = vocabulary.pronunciation // Lấy cách phát âm
+        pronuncLb.text = pronunciation // Hiển thị cách phát âm
+        currentLb.text = "Current: \(currentIndex + 1)/\(vocabularies.count)"
+
         let result = createPuzzle(for: word)
         puzzle = result.puzzle
         missingIndices = result.missingIndices
@@ -53,15 +80,20 @@ class FillBlankVC: UIViewController, UITextFieldDelegate {
         puzzleStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         missingTextFields = []
 
-        // Tạo giao diện mới
+        // Tạo giao diện mới với textfield bo góc
         for char in puzzle {
             if char == "_" {
                 let textField = UITextField()
                 textField.textAlignment = .center
-                textField.borderStyle = .none
+                textField.borderStyle = .roundedRect
+                textField.layer.cornerRadius = 8
+                textField.layer.borderWidth = 1
+                textField.layer.borderColor = UIColor.gray.cgColor
                 textField.placeholder = "_"
+                textField.attributedPlaceholder = NSAttributedString(string: "_", attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
                 textField.delegate = self
                 textField.textColor = .black
+                textField.backgroundColor = .clear
                 textField.autocorrectionType = .no
                 textField.autocapitalizationType = .none
                 puzzleStackView.addArrangedSubview(textField)
@@ -123,19 +155,15 @@ class FillBlankVC: UIViewController, UITextFieldDelegate {
 
         if isCorrect {
             correctCount += 1
-            let alert = UIAlertController(title: "Chúc mừng", message: "Bạn đã điền đúng từ \"\(vocabularies[currentIndex].word)\".", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Tiếp tục", style: .default, handler: { _ in
+            self.view.showMsg("Chúc mừng! Bạn đã điền đúng từ \"\(vocabularies[currentIndex].word)\".")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                 self.moveToNextWord()
-            }))
-            present(alert, animated: true, completion: nil)
+            }
         } else {
-            let alert = UIAlertController(title: "Chưa đúng", message: "Có một số chữ cái chưa chính xác. Hãy thử lại!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+            self.view.showMsg("Chưa đúng! Có một số chữ cái chưa chính xác. Hãy thử lại!")
         }
     }
 
-    // Chuyển sang từ tiếp theo
     func moveToNextWord() {
         currentIndex += 1
         if currentIndex < vocabularies.count {
@@ -145,9 +173,8 @@ class FillBlankVC: UIViewController, UITextFieldDelegate {
         }
     }
 
-    // Hiển thị kết quả cuối cùng
     func showFinalResult() {
-        let alert = UIAlertController(title: "Hoàn thành", message: "Bạn đã hoàn thành 10 từ. Số từ đúng: \(correctCount)/10", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Hoàn thành", message: "Bạn đã hoàn thành \(vocabularies.count) từ. Số từ đúng: \(correctCount)/\(vocabularies.count)", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Quay lại", style: .default, handler: { _ in
             self.navigationController?.popViewController(animated: true)
         }))
