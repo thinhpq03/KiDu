@@ -29,6 +29,31 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="Ellipse 86" translatesAutoresizingMaskIntoConstraints="NO" id="djs-fe-FdP">
                     <rect key="frame" x="0.0" y="0.0" width="430" height="782"/>
                 </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0Kc-YG-eU4">
+                    <rect key="frame" x="115" y="621" width="200" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msA-h5-nbD">
+                            <rect key="frame" x="0.0" y="0.0" width="90" height="50"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="5968764 1"/>
+                            <connections>
+                                <action selector="facebook:" destination="-1" eventType="touchUpInside" id="qlg-LX-9dM"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDZ-RD-uI8">
+                            <rect key="frame" x="110" y="0.0" width="90" height="50"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="Frame 5032"/>
+                            <connections>
+                                <action selector="google:" destination="-1" eventType="touchUpInside" id="AE4-6E-Ojt"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="VPs-4k-rho"/>
+                        <constraint firstAttribute="height" constant="50" id="gFl-ms-7Ut"/>
+                    </constraints>
+                </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHB-hz-pvx">
                     <rect key="frame" x="143" y="59" width="144" height="58"/>
                     <fontDescription key="fontDescription" name="CherryBombOne-Regular" family="Cherry Bomb One" pointSize="40"/>
@@ -187,6 +212,12 @@
                         <action selector="back:" destination="-1" eventType="touchUpInside" id="c8N-q0-QS1"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or SignUp With:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcg-8K-ACN">
+                    <rect key="frame" x="145.66666666666669" y="587" width="138.66666666666669" height="24"/>
+                    <fontDescription key="fontDescription" name="Itim-Regular" family="Itim" pointSize="20"/>
+                    <color key="textColor" name="FFFFFF"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="FFFFFF"/>
@@ -194,6 +225,10 @@
                 <constraint firstAttribute="bottom" secondItem="JQ6-Ms-uaC" secondAttribute="bottom" id="45z-VG-sRj"/>
                 <constraint firstItem="djs-fe-FdP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="4PH-Dq-p5n"/>
                 <constraint firstItem="JHB-hz-pvx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="E6b-eN-GXH"/>
+                <constraint firstItem="Zcg-8K-ACN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="FJX-xw-Nux"/>
+                <constraint firstItem="0Kc-YG-eU4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Gqn-ct-yO4"/>
+                <constraint firstItem="0Kc-YG-eU4" firstAttribute="top" secondItem="Zcg-8K-ACN" secondAttribute="bottom" constant="10" id="NyB-oh-pLn"/>
+                <constraint firstItem="Zcg-8K-ACN" firstAttribute="top" secondItem="A1F-ce-whb" secondAttribute="bottom" constant="10" id="O8T-ZM-MQm"/>
                 <constraint firstAttribute="trailing" secondItem="djs-fe-FdP" secondAttribute="trailing" id="Odr-cZ-Rma"/>
                 <constraint firstItem="dBC-mp-Wkj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="PcT-tL-bwd"/>
                 <constraint firstItem="JQ6-Ms-uaC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZBC-kE-JsE"/>
@@ -209,7 +244,9 @@
         </view>
     </objects>
     <resources>
+        <image name="5968764 1" width="50" height="50"/>
         <image name="Ellipse 86" width="440" height="805"/>
+        <image name="Frame 5032" width="50" height="50"/>
         <image name="back-square-svgrepo-com (1) 2" width="24" height="24"/>
         <namedColor name="FFFFFF">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

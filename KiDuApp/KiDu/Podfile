@@ -7,6 +7,10 @@ target 'KiDu' do
   # Pods for KiDu
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'lottie-ios'
+  pod 'GoogleSignIn'
+  pod 'GoogleSignInSwift'
+  pod 'FBSDKLoginKit'
+
 end
 
 post_install do |installer|

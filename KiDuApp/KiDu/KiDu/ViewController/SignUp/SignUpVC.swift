@@ -8,6 +8,9 @@
 import UIKit
 import FirebaseAuth
 import Lottie
+import FirebaseCore
+import GoogleSignIn
+import FBSDKLoginKit
 
 class SignUpVC: BaseVC {
 
@@ -78,6 +81,77 @@ class SignUpVC: BaseVC {
         }
 
         self.showAlert(message: errorMessage)
+    }
+
+    @IBAction func google(_ sender: Any) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else {
+            showAlert(message: "Google Sign-In configuration error.")
+            return
+        }
+
+        let config = GIDConfiguration(clientID: clientID)
+        GIDSignIn.sharedInstance.configuration = config
+
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { [weak self] result, error in
+            guard let self = self else { return }
+            if let error = error {
+                self.showAlert(message: "Google Sign-In failed: \(error.localizedDescription)")
+                return
+            }
+
+            guard let user = result?.user,
+                  let idToken = user.idToken?.tokenString else {
+                self.showAlert(message: "Google Sign-In token error.")
+                return
+            }
+
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+
+            Auth.auth().signIn(with: credential) { authResult, error in
+                if let error = error {
+                    self.showAlert(message: "Firebase authentication failed: \(error.localizedDescription)")
+                    return
+                }
+                print("Successfully signed up with Google: \(authResult?.user.email ?? "")")
+                self.view.showMsg("Account created successfully!")
+                self.onSignUpSuccess?(authResult?.user.email ?? "", "")
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+
+    @IBAction func facebook(_ sender: Any) {
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: ["public_profile", "email"], from: self) { [weak self] result, error in
+            guard let self = self else { return }
+            if let error = error {
+                self.showAlert(message: "Facebook Login failed: \(error.localizedDescription)")
+                return
+            }
+
+            guard let result = result, !result.isCancelled else {
+                self.showAlert(message: "Facebook Login cancelled.")
+                return
+            }
+
+            guard let accessToken = AccessToken.current?.tokenString else {
+                self.showAlert(message: "Facebook token error.")
+                return
+            }
+
+            let credential = FacebookAuthProvider.credential(withAccessToken: accessToken)
+
+            Auth.auth().signIn(with: credential) { authResult, error in
+                if let error = error {
+                    self.showAlert(message: "Firebase authentication failed: \(error.localizedDescription)")
+                    return
+                }
+                print("Successfully signed up with Facebook: \(authResult?.user.email ?? "")")
+                self.view.showMsg("Account created successfully!")
+                self.onSignUpSuccess?(authResult?.user.email ?? "", "")
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
 
     @IBAction func back(_ sender: Any) {

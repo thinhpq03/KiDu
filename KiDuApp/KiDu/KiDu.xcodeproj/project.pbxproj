@@ -24,6 +24,7 @@
 		851C858A2D9055490055B4B0 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851C85872D9055490055B4B0 /* SignUpVC.swift */; };
 		851C858B2D9055490055B4B0 /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851C85882D9055490055B4B0 /* LoginVC.xib */; };
 		851C858D2D9058250055B4B0 /* Login.json in Resources */ = {isa = PBXBuildFile; fileRef = 851C858C2D9058250055B4B0 /* Login.json */; };
+		8521355E2DD48B11004C1D0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8521355D2DD48B11004C1D0D /* GoogleService-Info.plist */; };
 		852C0AA42DAD551E00EFCD50 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C0AA22DAD551E00EFCD50 /* ProfileVC.swift */; };
 		852C0AA52DAD551E00EFCD50 /* ProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852C0AA32DAD551E00EFCD50 /* ProfileVC.xib */; };
 		854115092D9E2F5C00CD1309 /* PuzzleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854115072D9E2F5C00CD1309 /* PuzzleVC.swift */; };
@@ -55,7 +56,6 @@
 		85786DCB2D9D3CC900599887 /* AddCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85786DC92D9D3CC800599887 /* AddCell.xib */; };
 		85786DCE2D9D47C400599887 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85786DCD2D9D47C400599887 /* FileService.swift */; };
 		858C46502D89779E009C924A /* Story.json in Resources */ = {isa = PBXBuildFile; fileRef = 858C464F2D89778E009C924A /* Story.json */; };
-		858C46522D897AC3009C924A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 858C46512D897AC3009C924A /* GoogleService-Info.plist */; };
 		858C46552D897C32009C924A /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 858C46542D897C32009C924A /* FirebaseAuth */; };
 		858C46572D897C32009C924A /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 858C46562D897C32009C924A /* FirebaseDatabase */; };
 		858C46592D897C32009C924A /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 858C46582D897C32009C924A /* FirebaseFirestore */; };
@@ -127,6 +127,7 @@
 		851C85872D9055490055B4B0 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		851C85882D9055490055B4B0 /* LoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		851C858C2D9058250055B4B0 /* Login.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Login.json; sourceTree = "<group>"; };
+		8521355D2DD48B11004C1D0D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		852C0AA22DAD551E00EFCD50 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		852C0AA32DAD551E00EFCD50 /* ProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileVC.xib; sourceTree = "<group>"; };
 		854115072D9E2F5C00CD1309 /* PuzzleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleVC.swift; sourceTree = "<group>"; };
@@ -160,7 +161,6 @@
 		85786DC92D9D3CC800599887 /* AddCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddCell.xib; sourceTree = "<group>"; };
 		85786DCD2D9D47C400599887 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		858C464F2D89778E009C924A /* Story.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Story.json; sourceTree = "<group>"; };
-		858C46512D897AC3009C924A /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		85A0887D2D9EC0F200CD4399 /* TopPicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPicCell.swift; sourceTree = "<group>"; };
 		85A0887E2D9EC0F200CD4399 /* TopPicCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopPicCell.xib; sourceTree = "<group>"; };
 		85A088812D9EC55E00CD4399 /* FillBlankVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillBlankVC.swift; sourceTree = "<group>"; };
@@ -338,11 +338,11 @@
 		856ACE072CE64EF700B525E7 /* KiDu */ = {
 			isa = PBXGroup;
 			children = (
+				856ACE0F2CE64F1200B525E7 /* App */,
 				85FA65D12D95A2D200FDF4F3 /* Sound */,
 				85FA65C32D9543CE00FDF4F3 /* MLModel */,
 				858C464E2D897786009C924A /* JSON */,
 				85C04F4E2D7B4D6D0063D9DF /* Animation */,
-				856ACE0F2CE64F1200B525E7 /* App */,
 				85786DCC2D9D477000599887 /* Service */,
 				85A3C65F2D92558C007BB8A1 /* CustomView */,
 				85A3C6452D905FA8007BB8A1 /* Extension */,
@@ -352,8 +352,8 @@
 				85A3C66A2D926BE5007BB8A1 /* CollectionViewCell */,
 				856ACE102CE6514E00B525E7 /* ViewController */,
 				856ACDFF2CE64EF700B525E7 /* Assets.xcassets */,
+				8521355D2DD48B11004C1D0D /* GoogleService-Info.plist */,
 				856ACE002CE64EF700B525E7 /* Info.plist */,
-				858C46512D897AC3009C924A /* GoogleService-Info.plist */,
 			);
 			path = KiDu;
 			sourceTree = "<group>";
@@ -690,8 +690,8 @@
 			files = (
 				85C04F522D7B4D9D0063D9DF /* Welcome.json in Resources */,
 				851C85822D8D6D450055B4B0 /* SignUpVC.xib in Resources */,
+				8521355E2DD48B11004C1D0D /* GoogleService-Info.plist in Resources */,
 				8510FD3B2D92C7DB00A7BEB7 /* PomodorosCell.xib in Resources */,
-				858C46522D897AC3009C924A /* GoogleService-Info.plist in Resources */,
 				856ACE182CE6567500B525E7 /* Itim-Regular.ttf in Resources */,
 				85FA65D32D95A2DF00FDF4F3 /* alarm.wav in Resources */,
 				858C46502D89779E009C924A /* Story.json in Resources */,
@@ -769,13 +769,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KiDu/Pods-KiDu-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-KiDu/Pods-KiDu-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -874,6 +870,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KiDu/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "App need access to your Camera to take image for AI Focus";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App need access to your Photo Library to take image for AI Focus";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -904,6 +902,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KiDu/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "App need access to your Camera to take image for AI Focus";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App need access to your Photo Library to take image for AI Focus";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
