@@ -83,6 +83,17 @@ class PuzzleVC: BaseVC {
         return centers
     }
 
+    func checkIfPuzzleCompleted() {
+        let placedPieces = puzzleView.subviews.filter { $0 is UIImageView && $0 != originImage }
+
+        if placedPieces.count == viewModel.pieces.count {
+            let allCorrect = placedPieces.allSatisfy { ($0 as? UIImageView)?.isUserInteractionEnabled == false }
+            if allCorrect {
+                showCongratulations()
+            }
+        }
+    }
+
     func saveImageToFileManager() {
         guard let image = puzzleView.capture(), let folderURL = FileManagerService.shared.RelaxFolder() else {
             self.view.showMsg("Fail to save image")
@@ -204,6 +215,7 @@ extension PuzzleVC {
             if distance < 20 {
                 pieceView.frame.origin = correctOrigin
                 pieceView.isUserInteractionEnabled = false
+                checkIfPuzzleCompleted()
                 UIView.animate(withDuration: 0.2) {
                     pieceView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
                 } completion: { _ in

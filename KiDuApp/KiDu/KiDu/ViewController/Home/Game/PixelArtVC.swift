@@ -29,6 +29,8 @@ class PixelArtVC: BaseVC {
         }
     }
 
+    private var isCongratsShown = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCLV()
@@ -57,6 +59,7 @@ class PixelArtVC: BaseVC {
 
         viewModel.applyGrayScaleToPixelGrid()
         canvasView.pixelGrid = viewModel.pixelGrid
+        isCongratsShown = false
     }
 
     func setupGestureRecognizers() {
@@ -92,6 +95,22 @@ class PixelArtVC: BaseVC {
 
         viewModel.pixelGrid[row][col].color = selectedColor
         canvasView.pixelGrid = viewModel.pixelGrid
+
+        checkIfCompleted()
+    }
+
+
+    func checkIfCompleted() {
+        let grid = viewModel.pixelGrid
+        for row in grid {
+            for pixel in row {
+                let defaultGray = viewModel.defaultGrayForPixel(pixel)
+                if pixel.color.isApproximatelyEqual(to: defaultGray, tolerance: 0.05) {
+                    return
+                }
+            }
+        }
+        showCongratulations()
     }
 
     func saveImageToFileManager() {
